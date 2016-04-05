@@ -1,5 +1,5 @@
-# Check! Back-end
-##A Project & Task Management tool, RESTful API Back-end + ReactJS Front-end client.
+# Check! Front-end
+##A Project & Task Management tool, ReactJS Front-end client + RESTful API Back-end.
 
 ###Info:
 
