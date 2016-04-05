@@ -21,7 +21,7 @@ class Taskitem extends React.Component{
         method: "DELETE",
 
         // we have to apend the task id to the url, so the server knows which task to delete.
-        url: `http://localhost:3000/projects/${projectId}/tasks/${taskId}`,
+        url: `http://checktaskmanager.herokuapp.com/projects/${projectId}/tasks/${taskId}`,
         contentType: "application/json",
         dataType: "json"
       })

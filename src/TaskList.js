@@ -19,7 +19,7 @@ class TaskList extends React.Component{
       var component = this;
       var projectId = component.props.projectId;
 
-      jQuery.getJSON(`http://localhost:3000/projects/${projectId}/tasks`, function(data){
+      jQuery.getJSON(`http://checktaskmanager.herokuapp.com/projects/${projectId}/tasks`, function(data){
         console.log(data);
         component.setState({
           tasks: data.tasks

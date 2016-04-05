@@ -54,7 +54,7 @@ class EditableItem extends React.Component {
     } else {
       return(
         <div onClick={this.setEditable.bind(this)}>
-          <h4 className="list-group-item-heading">Task: {this.props.taskDescription}</h4>
+          <h4 className="list-group-item-heading">{this.props.taskDescription}</h4>
           <p className="list-group-item-text">Due: {this.props.dueDate}</p>
         </div>
       );

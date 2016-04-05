@@ -20,7 +20,7 @@ class ProjectList extends React.Component{
     var component = this;
 
     // we get the data from the backend via ajax using json
-    jQuery.getJSON("http://localhost:3000/projects.json", function(data){
+    jQuery.getJSON("http://checktaskmanager.herokuapp.com/projects.json", function(data){
       console.log(data);
       component.setState({
         projects: data.projects
@@ -40,33 +40,22 @@ class ProjectList extends React.Component{
     render(){
         return (
           <div>
-            <h1>Projects</h1>
             <ProjectForm onChange={this.renderProjects.bind(this)} />
-            <table className="table table-hover well">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Name</th>
-                <th>Description</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-            {this.state.projects.map(function(project, i){
+              <div className="list-group">
+                {this.state.projects.map(function(project, i){
               return(
                 <ProjectItem key={project.id}
                          id={project.id}
                          name={project.name}
                          description={project.description}
+                         start_date={project.start_date}
                          createdAt={project.created_at}
                          onChange={this.renderProjects.bind(this)}
                  />
               );
             }, this)}
-            </tbody>
-            </table>
-
           </div>
+        </div>
         );
     }
   }

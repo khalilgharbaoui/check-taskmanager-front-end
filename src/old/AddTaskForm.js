@@ -17,7 +17,7 @@ class AddTaskForm extends React.Component {
 
       jQuery.ajax({
           type: "POST",
-          url: "http://localhost:3000/tasks.json",
+          url: "http://checktaskmanager.herokuapp.com/tasks.json",
           data: JSON.stringify({
               task: task
           }),

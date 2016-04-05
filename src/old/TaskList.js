@@ -16,7 +16,7 @@ class TaskList extends React.Component{
   reloadTasks(){
     // the jQuery.get callback will create a new context (this), so we need to remember what 'this'
     var component = this;
-    jQuery.getJSON("http://localhost:3000/", function(data){
+    jQuery.getJSON("http://checktaskmanager.herokuapp.com/", function(data){
         component.setState({
             tasks: data.tasks
         });

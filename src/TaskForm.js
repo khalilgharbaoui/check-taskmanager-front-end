@@ -27,7 +27,7 @@ class TaskForm extends React.Component{
     // we want to POST formData to the api via ajax in JSON format
     jQuery.ajax({
       type: "POST",
-      url: `http://localhost:3000/projects/${formData.project_id}/tasks`,
+      url: `http://checktaskmanager.herokuapp.com/projects/${formData.project_id}/tasks`,
       contentType: "application/json",
       dataType: "json",
       data: JSON.stringify({

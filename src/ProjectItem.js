@@ -3,6 +3,8 @@ import React from 'react';
 import jQuery from 'jquery';
 import { Link } from 'react-router';
 import EditTextField from './EditTextField';
+import EditDateField from './EditDateField';
+
 
 class ProjectItem extends React.Component{
 
@@ -19,6 +21,7 @@ class ProjectItem extends React.Component{
       id: this.props.id,
       name: this.props.name,
       description: this.props.description,
+      start_date: this.props.start_date,
       completed: this.props.completed,
       createdAt: this.props.createdAt,
       updatedAt: this.props.updatedAt,
@@ -55,6 +58,7 @@ class ProjectItem extends React.Component{
       id: this.state.id,
       name: this.state.name,
       description: this.state.description,
+      start_date:this.state.start_date,
       completed: this.state.completed
     }, updatedState);
 
@@ -64,7 +68,7 @@ class ProjectItem extends React.Component{
 
     jQuery.ajax({
       type: "PUT",
-      url: `http://localhost:3000/projects/${projectId}`,
+      url: `http://checktaskmanager.herokuapp.com/projects/${projectId}`,
       data: JSON.stringify({
           project: newState
       }),
@@ -78,6 +82,7 @@ class ProjectItem extends React.Component{
           id: data.project.id,
           name: data.project.name,
           description: data.project.description,
+          start_date: data.project.start_date,
           completed: data.project.completed,
           createdAt: data.project.created_at,
           updatedAt: data.project.updated_at
@@ -97,7 +102,7 @@ class ProjectItem extends React.Component{
   }
 
   getClassName() {
-    let _classNames = ["project"];
+    let _classNames = ["list-group-item project"];
     if (this.state.loading) { _classNames.push("loading"); }
     if (this.state.completed) { _classNames.push("completed"); }
     return _classNames.join(" ");
@@ -122,7 +127,7 @@ class ProjectItem extends React.Component{
         method: "DELETE",
 
         // we have to apend the task id to the url, so the server knows which task to delete.
-        url: `http://localhost:3000/projects/${projectId}`,
+        url: `http://checktaskmanager.herokuapp.com/projects/${projectId}`,
         contentType: "application/json",
         dataType: "json"
       })
@@ -137,12 +142,18 @@ class ProjectItem extends React.Component{
     }
 
     render(){
-      return(<tr className={this.getClassName()}>
-				    <td><Link to={`/project/${this.props.id}`} className="btn btn-info btn-xs"> > </Link></td>
-            <td><EditTextField value={this.state.name} onChange={this.updateName.bind(this)} isEditable={!this.state.completed} /></td>
-            <td><EditTextField value={this.state.description} onChange={this.updateDescription.bind(this)} isEditable={!this.state.completed} /></td>
-            <td><a className="btn btn-danger btn-xs" onClick={this.deleteProject.bind(this)}>x</a></td>
-          </tr>
+      return(
+        <div className={this.getClassName()}>
+				    <Link to={`/project/${this.props.id}`} className="btn btn-info btn-xs view-project">🔎 view</Link>
+              <a className="btn btn-danger btn-xs pull-right vp" onClick={this.deleteProject.bind(this)}>X</a>
+
+        <h4 className="list-group-item-heading">
+          <EditTextField value={this.state.name} onChange={this.updateName.bind(this)} isEditable={!this.state.completed} />
+        </h4>
+        <strong>Project start date: <EditDateField value={this.state.start_date} onChange={this.updateDescription.bind(this)} isEditable={!this.state.completed} /></strong>
+
+        <p><EditTextField value={this.state.description} onChange={this.updateDescription.bind(this)} isEditable={!this.state.completed} /></p>
+    </div>
       );
     };
 }

@@ -46,7 +46,7 @@ class Task extends React.Component{
 
       jQuery.ajax({
         type: "PUT",
-        url: `http://localhost:3000/projects/${updatedTask.project_id}/tasks/${updatedTask.id}`,
+        url: `http://checktaskmanager.herokuapp.com/projects/${updatedTask.project_id}/tasks/${updatedTask.id}`,
         data: JSON.stringify({
             task: updatedTask
         }),
@@ -77,7 +77,7 @@ class Task extends React.Component{
       jQuery.ajax({
         method: "DELETE",
         // we have to apend the task id to the url, so the server knows which task to delete.
-        url: `http://localhost:3000/projects/${projectId}/tasks/${taskId}`,
+        url: `http://checktaskmanager.herokuapp.com/projects/${projectId}/tasks/${taskId}`,
         contentType: "application/json",
         dataType: "json"
       })
@@ -96,7 +96,7 @@ class Task extends React.Component{
       return(
           <li className={this.getClassName()}>
             <input className="toggle checkbox" id={this.props.id} type="checkbox" ref="completed" checked={this.props.status ? "checked" : ""} onChange={this.toggleChecked.bind(this)} />
-            <a className="btn btn-danger btn-xs pull-right" onClick={this.deleteTask.bind(this)}>x</a>
+            <a className="btn btn-danger btn-xs pull-right" onClick={this.deleteTask.bind(this)}>X</a>
             <EditableItem id={this.props.id}
                           taskDescription={this.props.taskDescription}
                           dueDate={this.props.dueDate}

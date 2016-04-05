@@ -18,7 +18,7 @@ class Project extends React.Component{
       var component = this;
       var projectId = this.props.params.projectId;
 
-      jQuery.getJSON(`http://localhost:3000/projects/${projectId}`, function(data){
+      jQuery.getJSON(`http://checktaskmanager.herokuapp.com/projects/${projectId}`, function(data){
         console.log(data);
         component.setState({
           project: data.project

@@ -41,7 +41,7 @@ Back-end commands:
   ```bash
   bundle install
   rails server
-  open http://localhost:3000
+  open http://checktaskmanager.herokuapp.com
   ```
 
 
